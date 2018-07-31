@@ -10,8 +10,8 @@
  */
 function drupal_status_check_menu() {
   $items['drupal-status-check/core'] = array(
-    'title' => 'Check Modules',
-    'description' => 'Lookup current release and check github.',
+    'title' => 'Check modules',
+    'description' => 'Lookup current release and check GitHub.',
     'page callback' => 'drupal_status_check_core',
     'access arguments' => array('access content'),
   );
@@ -22,9 +22,9 @@ function drupal_status_check_menu() {
 function drupal_status_check_core() {
   // list from https://github.com/backdrop/backdrop-issues/issues/2789
   $output = '';
-  $modules_ported_to_core = array('views','link','token','pathauto','date','link','email','transliteration','redirect','project_browser','entity_view_mode','file_entity');
-  foreach ($modules_ported_to_core as $module) {
-    $drupal_org_api_url = 'https://updates.drupal.org/release-history/' . $module . '/7.x';
+  $projects_merged_into_core = array('drupal', 'views','link','token','pathauto','date','link','email','transliteration','redirect','project_browser','entity_view_mode','file_entity');
+  foreach ($projects_merged_into_core as $project) {
+    $drupal_org_api_url = 'https://updates.drupal.org/release-history/' . $project . '/7.x';
     $response_from_drupal = backdrop_http_request($drupal_org_api_url);
     $xml = simplexml_load_string($response_from_drupal->data);
 
